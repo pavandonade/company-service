@@ -5,13 +5,12 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: company
       TZ: Asia/Kolkata
     ports:
-      - "5433:5432"                 # host 5433 → container 5432
+      - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./initdb:/docker-entrypoint-initdb.d  # runs SQL on first start
+      - postgres_data:/mnt/d/data/postgresql
+      - ./initdb:/docker-entrypoint-initdb.d
     networks:
       - postgres
     restart: unless-stopped
@@ -25,9 +24,9 @@ services:
       PGADMIN_CONFIG_SERVER_MODE: 'False'
       TZ: Asia/Kolkata
     ports:
-      - "5050:80"                  # open http://localhost:5050
+      - "5050:80"
     volumes:
-      - pgadmin_data:/var/lib/pgadmin
+      - pgadmin_data:/mnt/d/data/lib/pgadmin
     networks:
       - postgres
     depends_on:
