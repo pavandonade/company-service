@@ -9,7 +9,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/mnt/d/data/postgresql
+      - "D:/data/postgresql:/var/lib/postgresql/data"
       - ./initdb:/docker-entrypoint-initdb.d
     networks:
       - postgres
@@ -26,7 +26,7 @@ services:
     ports:
       - "5050:80"
     volumes:
-      - pgadmin_data:/mnt/d/data/lib/pgadmin
+      - pgadmin_data:/var/lib/pgadmin            # <-- correct path
     networks:
       - postgres
     depends_on:
@@ -40,3 +40,4 @@ networks:
 volumes:
   postgres_data:
   pgadmin_data:
+
